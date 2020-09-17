@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import UserContext from './context/UserContext'
+import LoginView from './views/LoginView'
+import Main from './components/Main'
+import 'bulma/css/bulma.css'
+import './App.css'
 
 function App() {
+  const { user } = React.useContext(UserContext)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      { user ? <Main /> : <LoginView /> }
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

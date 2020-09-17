@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App'
 import { UserProvider } from './context/UserContext'
+import { RouterProvider } from './context/RouterContext'
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <RouterProvider>
+        <App />
+      </RouterProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
