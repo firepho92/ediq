@@ -1,5 +1,4 @@
 import React from 'react'
-import SelectedProduct from '../components/SelectedProduct'
 
 const Router = React.createContext()
 

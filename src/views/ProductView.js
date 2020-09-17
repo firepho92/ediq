@@ -1,14 +1,17 @@
 import React from 'react'
 import RouterContext from '../context/RouterContext'
+import ViewTransition from '../animations/ViewTransition'
 
 function ProductView(props) {
   const { currentView } = React.useContext(RouterContext)
+  const [page, setPage] = React.useState(0)
+
   return (
-  <div onClick={() => console.log(currentView)}>ProductView{ currentView ? currentView.data : null }
-  <div>
-    {props.hola}
-  </div>
-  </div>
+    <ViewTransition>
+      <div>
+        { props.payload.title }
+      </div>
+    </ViewTransition>
   )
 }
 

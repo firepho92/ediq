@@ -5,7 +5,7 @@ const UserContext = React.createContext()
 const { Provider, Consumer } = UserContext
 
 function UserProvider(props) {
-  const [user, setUser] = React.useState({ username: 'firepho', name: 'Alex Aguilar' })
+  const [user, setUser] = React.useState(userDummy)
 
   return (
     <Provider value={{ user, setUser }}>
@@ -17,7 +17,7 @@ function UserProvider(props) {
 export default UserContext
 export { UserProvider, Consumer as UserContext }
 
-const user = {
+const userDummy = {
   username: 'firepho',
   name: 'Alex Aguilar',
   email: 'auza920205@gmail.com',
@@ -25,7 +25,7 @@ const user = {
   products: [
     {
       title: 'Guía PROS',
-      cover: '',
+      cover: 'http://localhost:8500/images/guiapros.png',
       pages: [
         {
           number: 1,

@@ -1,7 +1,6 @@
 import React from 'react'
 
 function ProductsWrapper(props) {
-  console.log(props)
   return (
     <div style={ wrapperStyle }>
       <div className='columns is-desktop'>
