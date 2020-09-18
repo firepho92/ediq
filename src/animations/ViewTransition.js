@@ -11,9 +11,7 @@ const ViewTransitionProps = {
   atActive: {
     opacity: 1
   },
-  duration: {
-    duration: 0.250
-  }
+  duration: 0.250
 }
 
 function ViewTransition(props) {
@@ -23,7 +21,7 @@ function ViewTransition(props) {
       initial = { ViewTransitionProps.atEnter }
       animate = { ViewTransitionProps.atActive }
       exit = { ViewTransitionProps.atLeave }
-      transition = { ViewTransitionProps.duration }
+      transition = {{ duration: ViewTransitionProps.duration, delay: props.delay ?? 0 }}
     >
       { props.children }
     </motion.div>

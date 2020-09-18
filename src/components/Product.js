@@ -11,7 +11,7 @@ function Product(props) {
 
   return(
     <div className='column is-3'>
-      <div className='card' style={{ cursor: 'pointer', borderRadius: '3px', overflow: 'hidden' }} onClick={handleClick}>
+      <div className='card' style={{ cursor: 'pointer', borderRadius: '3px', overflow: 'hidden' }} onClick={ handleClick }>
         <div className='card-image'>
           <figure className='image is-4by3'>
             <img src={ props.payload.cover } alt='a' width='200' />

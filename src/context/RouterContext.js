@@ -9,7 +9,6 @@ function RouterProvider(props) {
   const [viewsHistory, setHistory] = React.useState([])
 
   const pushView = (payload) => {
-    console.log(viewsHistory)
     viewsHistory.push(payload)
     setCurrentView(viewsHistory[viewsHistory.length - 1])
   }

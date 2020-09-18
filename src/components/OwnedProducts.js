@@ -4,12 +4,8 @@ import ProductsWrapper from './ProductsWrapper'
 import Product from './Product'
 import UserContext from '../context/UserContext'
 
-function OwnedProducts() {
+export default function OwnedProducts() {
   const { user } = React.useContext(UserContext)
-
-  React.useEffect(() => {
-    console.log(user.products)
-  })
 
   return (
     <ViewTransition>
@@ -18,7 +14,7 @@ function OwnedProducts() {
           <p className='control has-icons-right'>
             <input className='input' type='text' placeholder='Buscar' required />
             <span className="icon is-small is-right">
-              <i className="fas fa-check"></i>
+              <i className="fas fa-search"></i>
             </span>
           </p>
         </div>
@@ -29,5 +25,3 @@ function OwnedProducts() {
     </ViewTransition>
   )
 }
-
-export default OwnedProducts

@@ -13,9 +13,9 @@ function Main() {
   return(
     <ViewTransition>
       <div className='has-navbar-fixed-top'>
-      <Navbar />
-      <Router />
-    </div>
+        <Navbar />
+        <Router />
+      </div>
     </ViewTransition>
   )
 }

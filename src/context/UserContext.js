@@ -121,11 +121,7 @@ const userDummy = {
           elements: [
             {
               type: 'Text',
-              text: 'Escribe con letras los siguientes números.'
-            },
-            {
-              type: 'Text',
-              text: '34,512 = treinta y cuatro mi quinientos doce'
+              text: `Escribe con letras los siguientes números. \r\n Ejemplo: 34,512 = treinta y cuatro mi quinientos doce`
             },
             {
               type: 'Activity',

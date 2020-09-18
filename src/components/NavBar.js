@@ -16,7 +16,7 @@ function Navbar() {
   }
 
   return (
-    <nav className='navbar is-transparent is-fixed-up' style={ navbar }>
+    <nav className='navbar is-transparent is-fixed-top' style={ navbar }>
       <div className='navbar-brand'>
         <img src={ logo } width='50' alt='ediQ' />
         <div className='navbar-burger burger' data-target='navbar'>
