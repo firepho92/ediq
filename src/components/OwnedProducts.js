@@ -9,7 +9,7 @@ export default function OwnedProducts() {
 
   return (
     <ViewTransition>
-      <div className='column is-2'>
+      <div className='column is-2' style={{ paddingTop: '4.25rem' }}>
         <div className='field'>
           <p className='control has-icons-right'>
             <input className='input' type='text' placeholder='Buscar' required />
@@ -20,7 +20,7 @@ export default function OwnedProducts() {
         </div>
       </div>
       <ProductsWrapper>
-        { user.products.map((product, i) => <Product key={ i } payload={ product } />) }
+        { user.products.map((product, i) => <Product key={ i } product={ product } productIndex={ i }/>) }
       </ProductsWrapper>
     </ViewTransition>
   )

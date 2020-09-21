@@ -4,15 +4,21 @@ import './index.css';
 import App from './App'
 import { UserProvider } from './context/UserContext'
 import { RouterProvider } from './context/RouterContext'
+import { StylesProvider } from './context/StylesContext'
 import * as serviceWorker from './serviceWorker'
+import { HeritageProvider } from './context/HeritageContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
-      <RouterProvider>
-        <App />
-      </RouterProvider>
-    </UserProvider>
+    <HeritageProvider>
+      <UserProvider>
+        <RouterProvider>
+          <StylesProvider>
+            <App />
+          </StylesProvider>
+        </RouterProvider>
+      </UserProvider>
+    </HeritageProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

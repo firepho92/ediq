@@ -6,7 +6,7 @@ function Product(props) {
   const { pushView } = React.useContext(RouterContext)
 
   const handleClick = () => {
-    pushView(<ProductPresentation payload={ props.payload } />)
+    pushView(<ProductPresentation product={ props.product } productIndex={ props.productIndex } />)
   }
 
   return(
@@ -14,12 +14,12 @@ function Product(props) {
       <div className='card' style={{ cursor: 'pointer', borderRadius: '3px', overflow: 'hidden' }} onClick={ handleClick }>
         <div className='card-image'>
           <figure className='image is-4by3'>
-            <img src={ props.payload.cover } alt='a' width='200' />
+            <img src={ props.product.cover } alt='a' width='200' />
           </figure>
         </div>
         <div className='card-content'>
           <div className='content'>
-            { props.payload.title }
+            { props.product.title }
           </div>
         </div>
       </div>

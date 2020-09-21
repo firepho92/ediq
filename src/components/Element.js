@@ -1,11 +1,18 @@
 import React from 'react'
-import ViewTransition from '../animations/ViewTransition'
+import UserContext from '../context/UserContext'
 
 export default function Element(props) {
 
-  React.useEffect(() => {
-    console.log(props.element)
-  })
+  const { user, setUser } = React.useContext(UserContext)
+  const [currentElement, setCurrentElement] = React.useState()
+
+  const saveAnswer = (exerciseIndex, answer) => {
+    let userCopy = user
+    userCopy.products[props.productIndex].pages[props.pageIndex].elements[props.elementIndex].exercises[exerciseIndex].answer = answer
+    setUser(userCopy)
+    console.log(props.productIndex + ' ' + props.pageIndex + ' ' + props.elementIndex + ' ' + exerciseIndex)
+    console.log(userCopy)
+  }
 
   const elementParser = (element) => {
     let parsedElement
@@ -27,10 +34,10 @@ export default function Element(props) {
     let parsedElement
     switch (activity.subtype) {
       case 'Complete sentences pick':
-        parsedElement = <CompleteSentencesPick activity={ activity } />
+        parsedElement = <CompleteSentencesPick activity={ activity } saveAnswer={ saveAnswer } />
         break
       case 'Complete sentences write':
-        parsedElement = <CompleteSentencesWrite activity={ activity } />
+        parsedElement = <CompleteSentencesWrite activity={ activity } saveAnswer={ saveAnswer } />
         break
       default:
         parsedElement = activity.subtype
@@ -52,12 +59,19 @@ const Text = (props) => {
   )
 }
 
-const CompleteSentencesPick = (props) => {
+function CompleteSentencesPick(props) {
+  const [selectedButton, setSelectedButton] = React.useState(null)
+
+  const handleButton = (index, option) => {
+    props.saveAnswer(index, option)
+    setSelectedButton(option)
+  }
+
   return (
     <div style={{ padding: '1em' }}>
-      { props.activity.exercises.map((exercise, i) => <div key={ i } style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'space-between' }}>{ exercise.sentence }&nbsp;<div className='field has-addons'>{ exercise.options.map((option, i) => (
+      { props.activity.exercises.map((exercise, index) => <div key={ index } style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'space-between' }}>{ exercise.sentence }&nbsp;<div className='field has-addons'>{ exercise.options.map((option, i) => (
         <p key={ i } className='control'>
-          <button className='button'>
+          <button className={exercise.answer === option ? 'button is-info' : 'button'} onClick={ () => handleButton(index, option) }>
             <span>{ option }</span>
           </button>
         </p>
@@ -67,12 +81,19 @@ const CompleteSentencesPick = (props) => {
 }
 
 const CompleteSentencesWrite = (props) => {
+  const [inputs, setInputs] = React.useState({})
+
+  const handleChangeForField = fieldName => ({target}) => setInputs(state => {
+    console.log(fieldName)
+    return ({...state,[fieldName]:target.value})
+  })
+  
   return (
     <div style={{ padding: '1em' }}>
-      { props.activity.exercises.map((exercise, i) => <div key={ i } style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>{ exercise.sentence }&nbsp;<div className='field has-addons'>
+      { props.activity.exercises.map((exercise, index) => <div key={ index } style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>{ exercise.sentence }&nbsp;<div className='field has-addons'>
         <div className='field'>
           <p className='control'>
-            <input className='input' type='text' style={{ width: '5em' }} />
+            <input className='input' type='text' style={{ width: (exercise.rightAnswer.length + 2) + 'em' }} onChange={ handleChangeForField(index) } value={ inputs[index] } name={index}/>
           </p>
         </div>
       </div></div>) }

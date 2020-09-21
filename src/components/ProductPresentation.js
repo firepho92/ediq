@@ -2,21 +2,28 @@ import React from 'react'
 import RouterContext from '../context/RouterContext'
 import ProductView from '../views/ProductView'
 import ViewTransition from '../animations/ViewTransition'
+import StylesContext from '../context/StylesContext'
 
 export default function ProductPresentation(props) {
   const { pushView } = React.useContext(RouterContext)
+  const { setBackgroundImage } = React.useContext(StylesContext)
+
+  const handleClick = () => {
+    setBackgroundImage(props.product.backgroundImage)
+    pushView(<ProductView product={ props.product } productIndex={ props.productIndex } />)
+  }
 
   return (
     <ViewTransition>
-      <div className='columns is-desktop'>
+      <div className='columns is-desktop' style={{ marginTop: '3.25rem' }}>
         <div className='column is-6' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '2em', height: '100%', flexDirection: 'column' }}>
           <div className='box' tyle={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1em', height: '100%', flexDirection: 'column' }}>
-            <img src={ props.payload.cover } alt='cover' width='300' />
+            <img src={ props.product.cover } alt='cover' width='300' />
             <p>
               Guía PROS. Sexto grado.
             </p>
           </div>
-          <div className='button' onClick={ () => pushView(<ProductView payload={ props.payload } />) }>
+          <div className='button' onClick={ handleClick }>
             Iniciar
           </div>
         </div>

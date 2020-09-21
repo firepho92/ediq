@@ -24,14 +24,66 @@ const userDummy = {
   tutorEmail: 'jano-2709@hotmail.com',
   products: [
     {
+      _id: 0,
       title: 'Guía PROS',
       cover: 'http://localhost:8500/images/guiapros.png',
+      backgroundImage: 'http://localhost:8500/images/Matemáticas_I.jpg',
+      type: 'evaluation',
       pages: [
         {
           number: 1,
-          favorite: false,
-          seen: false,
-          elements: [
+          exercise: {
+            sentence: '1. Nombre de las partes que conforman una fracción',
+            rightAnswer: 'Numerador y denominador',
+            answer: null,
+            options: [
+              'a) Arriba y abajo',
+              'b) Uno y dos',
+              'c) Numerador y denominador',
+              'd) Primero y segundo'
+            ]
+          }
+        },
+        {
+          number: 2,
+          exercise: {
+            sentence: '2. ¿Cuántos metros tiene un kilómetro?',
+            rightAnswer: '1000',
+            answer: null,
+            options: [
+              'a) 100',
+              'b) 454',
+              'c) 600',
+              'd) 1000'
+            ]
+          }
+        },
+        {
+          number: 3,
+          exercise: {
+            sentence: 'Es la suma de los lados de cualquier figura',
+            rightAnswer: 'Perímetro',
+            answer: null,
+            options: [
+              'Área',
+              'Perímetro',
+              'Superficie',
+              'Volúmen'
+            ]
+          }
+        }
+      ],
+      price: 0,
+      level: 'Primaria',//primaria, secundaria, bachillerato
+      grade: '',//
+      subject: '',//Biología etc
+      trimester: '',
+      baseColor: '#ff0000'
+    }
+  ]
+}
+/*
+elements: [
             {
               type: 'Text',
               text: 'Elige la palabra adecuada y completa.'
@@ -113,62 +165,4 @@ const userDummy = {
               ]
             }
           ]
-        },
-        {
-          number: 2,
-          favorite: false,
-          seend: false,
-          elements: [
-            {
-              type: 'Text',
-              text: `Escribe con letras los siguientes números. \r\n Ejemplo: 34,512 = treinta y cuatro mi quinientos doce`
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences write',
-              exercises: [
-                {
-                  sentence: '2 = ',
-                  rightAnswer: 'Dos',
-                  answer: null
-                },
-                {
-                  sentence: '34 = ',
-                  rightAnswer: 'Treinta y cuatro',
-                  answer: null
-                },
-                {
-                  sentence: '207 = ',
-                  rightAnswer: 'Doscientos siete',
-                  answer: null
-                }
-              ]
-            }
-          ]
-        },
-        {
-          number: 3,
-          favorite: false,
-          seen: false,
-          elements: [
-            {
-              type: 'Text',
-              text: 'Resuelve las siguientes sumas de fracciones comunes.'
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences write',
-              exercises: [
-                {
-                  sentence: '2/5 + 3/4',
-                  rightAnswer: '',
-                  answer: null
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+*/
