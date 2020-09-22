@@ -10,6 +10,7 @@ function Main() {
   const { currentView, pushView } = React.useContext(RouterContext)
   const { backgroundImage } = React.useContext(StylesContext)
 
+
   React.useEffect(() => {
     if(!currentView) pushView(<OwnedProducts />)
   })

@@ -10,7 +10,7 @@ function Product(props) {
   }
 
   return(
-    <div className='box' style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '15rem', padding: '0em', overflow: 'hidden', cursor: 'pointer' }} onClick={ handleClick }>
+    <div className='box' style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '10rem', padding: '0em', overflow: 'hidden', cursor: 'pointer' }} onClick={ handleClick }>
         <img src={ props.product.cover } alt='Cover' />
         <div style={{ padding: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
           <div style = {{ display: 'flex' }}>

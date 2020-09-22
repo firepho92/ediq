@@ -5,8 +5,9 @@ import App from './App'
 import { UserProvider } from './context/UserContext'
 import { RouterProvider } from './context/RouterContext'
 import { StylesProvider } from './context/StylesContext'
+import { HeritageProvider } from './context/HeritageContext'
+import { ApplicationContextProvider } from './context/ApplicationContext'
 import * as serviceWorker from './serviceWorker'
-import { HeritageProvider } from './context/HeritageContext';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +15,9 @@ ReactDOM.render(
       <UserProvider>
         <RouterProvider>
           <StylesProvider>
-            <App />
+            <ApplicationContextProvider>
+              <App />
+            </ApplicationContextProvider>
           </StylesProvider>
         </RouterProvider>
       </UserProvider>

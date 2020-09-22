@@ -18,7 +18,7 @@ export default function OwnedProducts() {
           </p>
         </div>
       </div>
-      <div className='columns' style={{ display: 'flex',  flexFlow: 'column wrap', padding: '2em'}}>
+      <div className='columns' style={{ display: 'flex',  flexFlow: 'column wrap', padding: '0.5em 1.5em 0 1.5em'}}>
         { user.products.map((product, i) => <Product key={ i } product={ product } productIndex={ i }/>) }
       </div>
     </ViewTransition>

@@ -34,7 +34,7 @@ const userDummy = {
           number: 1,
           exercise: {
             sentence: '1. Nombre de las partes que conforman una fracción',
-            rightAnswer: 'Numerador y denominador',
+            rightAnswer: 'c) Numerador y denominador',
             answer: null,
             options: [
               'a) Arriba y abajo',
@@ -48,7 +48,7 @@ const userDummy = {
           number: 2,
           exercise: {
             sentence: '2. ¿Cuántos metros tiene un kilómetro?',
-            rightAnswer: '1000',
+            rightAnswer: 'd) 1000',
             answer: null,
             options: [
               'a) 100',
@@ -62,13 +62,13 @@ const userDummy = {
           number: 3,
           exercise: {
             sentence: 'Es la suma de los lados de cualquier figura',
-            rightAnswer: 'Perímetro',
+            rightAnswer: 'b) Perímetro',
             answer: null,
             options: [
-              'Área',
-              'Perímetro',
-              'Superficie',
-              'Volúmen'
+              'a) Área',
+              'b) Perímetro',
+              'c) Superficie',
+              'd) Volúmen'
             ]
           }
         }

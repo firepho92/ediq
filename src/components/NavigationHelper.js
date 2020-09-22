@@ -1,9 +1,13 @@
 import React from 'react'
 import ViewTransition from '../animations/ViewTransition'
+import RouterContext from '../context/RouterContext'
+import ApplicationContext from '../context/ApplicationContext'
 
 export default function NavigationHelper(props) {
 
   const [number, setNumber] = React.useState(props.pageIndex + 1)
+  const { pushView } = React.useContext(RouterContext)
+  const { setWarningModalIsOpen } = React.useContext(ApplicationContext)
 
   const handleKeyPress = (event) => {
     if(event.key === 'Enter') {
@@ -55,6 +59,11 @@ export default function NavigationHelper(props) {
               <i className='fas fa-chevron-right'></i>
             </span>
             <span>Siguiente</span>
+          </button>
+        </p>
+        <p className='control'>
+          <button className='button' onClick={ setWarningModalIsOpen }>
+            <span>Finalizar</span>
           </button>
         </p>
       </div>
