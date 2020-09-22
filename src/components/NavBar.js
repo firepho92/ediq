@@ -6,6 +6,7 @@ import UserContext from '../context/UserContext'
 import RouterContext from '../context/RouterContext'
 import OwnedProducts from './OwnedProducts'
 import Heritage from './Heritage'
+import HeritageView from '../views/HeritageView'
 
 function Navbar() {
   const { pushView } = React.useContext(RouterContext)
@@ -27,7 +28,7 @@ function Navbar() {
       </div>
       <div id='navbar' className='navbar-menu'>
         <div className='navbar-start'>
-          <div className='navbar-item' style={ pointer } onClick={ () => handleClick(<Heritage />) }>
+          <div className='navbar-item' style={ pointer } onClick={ () => handleClick(<HeritageView />) }>
             Acervo
           </div>
           <div className='navbar-item' style={ pointer } onClick={ () => handleClick(<OwnedProducts />) }>

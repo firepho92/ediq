@@ -1,6 +1,5 @@
 import React from 'react'
 import ViewTransition from '../animations/ViewTransition'
-import ProductsWrapper from './ProductsWrapper'
 import Product from './Product'
 import UserContext from '../context/UserContext'
 
@@ -19,9 +18,9 @@ export default function OwnedProducts() {
           </p>
         </div>
       </div>
-      <ProductsWrapper>
+      <div className='columns' style={{ display: 'flex',  flexFlow: 'column wrap', padding: '2em'}}>
         { user.products.map((product, i) => <Product key={ i } product={ product } productIndex={ i }/>) }
-      </ProductsWrapper>
+      </div>
     </ViewTransition>
   )
 }

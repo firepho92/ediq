@@ -10,20 +10,14 @@ function Product(props) {
   }
 
   return(
-    <div className='column is-3'>
-      <div className='card' style={{ cursor: 'pointer', borderRadius: '3px', overflow: 'hidden' }} onClick={ handleClick }>
-        <div className='card-image'>
-          <figure className='image is-4by3'>
-            <img src={ props.product.cover } alt='a' width='200' />
-          </figure>
-        </div>
-        <div className='card-content'>
-          <div className='content'>
+    <div className='box' style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '15rem', padding: '0em', overflow: 'hidden', cursor: 'pointer' }} onClick={ handleClick }>
+        <img src={ props.product.cover } alt='Cover' />
+        <div style={{ padding: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+          <div style = {{ display: 'flex' }}>
             { props.product.title }
           </div>
         </div>
       </div>
-    </div>
   )
 }
 
