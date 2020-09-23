@@ -1,8 +1,8 @@
 import React from 'react'
 import ViewTransition from '../animations/ViewTransition'
-import ProductsWrapper from '../components/ProductsWrapper'
 import HeritageContext from '../context/HeritageContext'
 import ProductsFilter from '../components/ProductsFilter'
+import UserContext from '../context/UserContext'
 
 export default function OwnedProducts() {
   const { heritage } = React.useContext(HeritageContext)
@@ -34,7 +34,7 @@ export default function OwnedProducts() {
         </div>
         <ProductsFilter handleFilter={ handleFilter } />
       </div>
-      <div className='columns' style={{ display: 'flex',  flexFlow: 'column wrap', padding: '2em'}}>
+      <div className='columns' style={{ display: 'flex',  flexFlow: 'column wrap', padding: '1em 2em 2em 2em'}}>
         { products.map(product => <Product key={ product._id } product={ product } />) }
       </div>
     </ViewTransition>
@@ -42,18 +42,28 @@ export default function OwnedProducts() {
 }
 
 function Product(props) {
+  const { user, setUser } = React.useContext(UserContext)
+  const [buttonString, setButtonString] = React.useState('Adquirir')
+
+  const handleGetButton = () => {
+    let userCopy = user
+    userCopy.products.push(props.product)
+    setButtonString('Adquirido')
+    setUser(userCopy)
+  }
+
   return (
     <ViewTransition>
-      <div className='box' style={{ display: 'flex', flexDirection: 'column', flex: 1, width: '15rem', padding: '0em', overflow: 'hidden' }}>
+      <div className='box grow' style={{ display: 'flex', flexDirection: 'column', flex: 1, maxWidth: '10rem', width: '10rem', padding: '0em', overflow: 'hidden', cursor: 'pointer', margin: '0 1em 0 1em' }}>
         <img src={ props.product.cover } alt='Cover' />
         <div style={{ padding: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
           <div style = {{ display: 'flex' }}>
             { props.product.title }
           </div>
           <div style={{ display: 'flex' }}>
-            <div className='button is-link is-small' onClick={ () => console.log(props.product) }>
-              Adquirir
-            </div>
+            <button className='button is-link is-small' onClick={ handleGetButton } disabled={ (user.products.find(element => element._id === props.product._id)) ? true : false } >
+              { buttonString }
+            </button>
           </div>
         </div>
       </div>

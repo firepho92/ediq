@@ -1,8 +1,13 @@
-const server = 'http://localhost:8500/'
+const heritageService = 'http://localhost:8500/'
+const authService = 'http://localhost:8501/'
 
 //products
-const getProducts = server + 'products'
+const getProducts = heritageService + 'products'
 
-export default server
+//auth
+const authenticateURL = authService + 'auth'
 
-export { getProducts }
+//user
+const getUserURL = authService + 'user/'
+
+export { getProducts, authenticateURL, getUserURL }

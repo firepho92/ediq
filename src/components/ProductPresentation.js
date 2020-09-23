@@ -8,10 +8,6 @@ export default function ProductPresentation(props) {
   const { pushView } = React.useContext(RouterContext)
   const { setBackgroundImage } = React.useContext(StylesContext)
 
-  React.useEffect(() => {
-    console.log(props.product)
-  }, [])
-
   const handleClick = () => {
     setBackgroundImage(props.product.backgroundImage)
     pushView(<ProductView product={ props.product } productIndex={ props.productIndex } />)
@@ -27,8 +23,8 @@ export default function ProductPresentation(props) {
               Guía PROS. Sexto grado.
             </p>
           </div>
-          <button className='button' onClick={ handleClick } disabled={ props.product.status === 'finished' ? true : false }>
-            Iniciar
+          <button className='button' onClick={ handleClick } >
+            { props.product.status === 'finished' ? 'Revisar' : 'Iniciar' }
           </button>
         </div>
         <div className='column is-6' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2em', height: '100%' }}>
@@ -50,12 +46,12 @@ function Score(props) {
     console.log(product)
     const addition = product.pages.filter(page => page.exercise.answer === page.exercise.rightAnswer).length
     console.log(addition + ' ' + product.pages.length)
-    return addition * 10 / product.pages.length
+    return (addition * 10 / product.pages.length).toFixed(2)
   }
 
   return (
-    <div className='box' style={{ width: '100%' }}>
-      <p>Finalizado</p>
+    <div className='box blue-shadow' style={{ width: '100%', backgroundColor:'rgb(42, 92, 167)', color: 'white', boxShadow: '1 0.5em 1em -0.125em rgba(42, 92, 167, 0.5), 0 0px 0 1px rgba(42, 92, 167, 0.06) !important' }}>
+      <p>{ props.product.status === 'finished' ? 'Finalizado' : 'Pendiente' }</p>
       <p>Calificación:&nbsp;{ calculateScore(props.product) }</p>
     </div>
   )

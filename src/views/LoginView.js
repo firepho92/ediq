@@ -2,13 +2,23 @@ import React from 'react'
 import UserContext from '../context/UserContext'
 import ViewTransition from '../animations/ViewTransition'
 import logo from '../assets/images/index.jpeg'
+import { auth, getUser } from '../api/UserAPI'
 
 function LoginView() {
-  const { setUser } = React.useContext(UserContext)
+  const { setUser, setToken } = React.useContext(UserContext)
+  const [username, setUsername] = React.useState('')
+  const [password, setPassword] = React.useState('')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setUser(userDummy)
+    try {
+      const authenticationData = await auth({ user: { username: username, password: password }})
+      const user = await getUser(authenticationData.data.id)
+      setToken(authenticationData.data.token)
+      setUser(user.data)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   return(
@@ -19,11 +29,11 @@ function LoginView() {
             
             <div className='field'>
               <label className='label'>Nombre de usuario</label>
-              <input className='input' type='text' placeholder='Ej. Alex' required />
+              <input className='input' type='text' placeholder='Ej. Alex' required onChange={ (e) => setUsername(e.target.value) } value= { username } />
             </div>
             <div className='field'>
               <label className='label'>Nombre de usuario</label>
-              <input className='input' type='password' required />
+              <input className='input' type='password' required onChange={ (e) => setPassword(e.target.value) } value={ password } />
             </div>
             <div className='control'>
               <input className='button is-link' type='submit' value='Entrar' />
@@ -45,161 +55,4 @@ const center = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center'
-}
-
-const userDummy = {
-  username: 'firepho',
-  name: 'Alex Aguilar',
-  email: 'auza920205@gmail.com',
-  tutorEmail: 'jano-2709@hotmail.com',
-  products: [
-    {
-      _id: 0,
-      title: 'Guía PROS',
-      cover: 'http://localhost:8500/images/guiapros.png',
-      pages: [
-        {
-          number: 1,
-          favorite: false,
-          seen: false,
-          elements: [
-            {
-              type: 'Text',
-              text: 'Elige la palabra adecuada y completa.'
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences pick',
-              exercises: [
-                {
-                  sentence: '_____ no termino mi tarea',
-                  options: ['aún', 'aun'],
-                  rightAnswer: 'aún',
-                  answer: null
-                },
-                {
-                  sentence: 'Ojalá que _____ aceptes',
-                  options: ['tú', 'tu'],
-                  rightAnswer: 'tú',
-                  answer: null
-                },
-                {
-                  sentence: '_____ mamá me compró esta muñeca',
-                  options: ['mí', 'mi'],
-                  rightAnswer: 'mi',
-                  answer: null
-                },
-                {
-                  sentence: 'María leyó en voz alta un cuento para _____',
-                  options: ['sí', 'si'],
-                  rightAnswer: 'sí',
-                  answer: null
-                },
-                {
-                  sentence: 'El libro es _____ Luis',
-                  options: ['dé', 'de'],
-                  rightAnswer: 'de',
-                  answer: null
-                }
-              ]
-            },
-            {
-              type: 'Text',
-              text: 'Distingue entre mí(pronombre) y mi (determinante posesivo).'
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences write',
-              exercises: [
-                {
-                  sentence: 'Lo quiero para _____.',
-                  rightAnswer: 'mí',
-                  answer: null
-                },
-                {
-                  sentence: 'A _____ no me ha gustado.',
-                  rightAnswer: 'mí',
-                  answer: null
-                },
-                {
-                  sentence: 'Éste es _____ hermano.',
-                  rightAnswer: 'mi',
-                  answer: null
-                },
-                {
-                  sentence: 'En _____ opinión esto no está bien.',
-                  rightAnswer: 'mi',
-                  answer: null
-                },
-                {
-                  sentence: 'A _____ hermana le llamó la atención.',
-                  rightAnswer: 'Mi',
-                  answer: null
-                },
-                {
-                  sentence: 'A _____ me parece interesante la historia.',
-                  rightAnswer: 'mí',
-                  answer: null
-                },
-              ]
-            }
-          ]
-        },
-        {
-          number: 2,
-          favorite: false,
-          seend: false,
-          elements: [
-            {
-              type: 'Text',
-              text: `Escribe con letras los siguientes números. \r\n Ejemplo: 34,512 = treinta y cuatro mi quinientos doce`
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences write',
-              exercises: [
-                {
-                  sentence: '2 = ',
-                  rightAnswer: 'Dos',
-                  answer: null
-                },
-                {
-                  sentence: '34 = ',
-                  rightAnswer: 'Treinta y cuatro',
-                  answer: null
-                },
-                {
-                  sentence: '207 = ',
-                  rightAnswer: 'Doscientos siete',
-                  answer: null
-                }
-              ]
-            }
-          ]
-        },
-        {
-          number: 3,
-          favorite: false,
-          seen: false,
-          elements: [
-            {
-              type: 'Text',
-              text: 'Resuelve las siguientes sumas de fracciones comunes.'
-            },
-            {
-              type: 'Activity',
-              subtype: 'Complete sentences write',
-              exercises: [
-                {
-                  sentence: '2/5 + 3/4 = ',
-                  rightAnswer: '',
-                  answer: null
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
 }

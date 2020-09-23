@@ -31,19 +31,19 @@ export default function ProductView(props) {
     setUser(userCopy)
     setWarningModalIsOpen(false)
     setBackgroundImage('')
-    pushView(<ProductPresentation product={ user.products[props.productIndex] } />)
+    pushView(<ProductPresentation product={ user.products[props.productIndex] } productIndex={ props.productIndex } />)
   }
 
   return (
     <ViewTransition>
-        <ReactModal isOpen={ warningModalIsOpen } contentLabel='Minimal Modal Example' style={{ overlay: { zIndex: 31, backgroundColor: 'rgba(0, 0, 0, 0.75)' } }}>
-          <button onClick={ handleEvaluationExit }>Close Modal</button>
-        </ReactModal>
+      <ReactModal ariaHideApp={ false } isOpen={ warningModalIsOpen } contentLabel='Minimal Modal Example' style={{ overlay: { zIndex: 31, backgroundColor: 'rgba(0, 0, 0, 0.75)' } }}>
+        <button onClick={ handleEvaluationExit }>Close Modal</button>
+      </ReactModal>
       <div className='columns is-desktop' style={{ padding: '1em', display: 'flex', flexDirection: 'column', paddingTop: '4.25rem' }}>
         <div className='column' style={{ padding: '1em', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
           <NavigationHelper pageIndex={ pageIndex } totalPages={ props.product.pages.length } nextPage={ nextPage } beforePage={ beforePage } setPage={ setPageIndex }/>
         </div>
-        <EvaluationView page={ props.product.pages[pageIndex] } pageIndex={ pageIndex } productIndex={ props.productIndex } />
+        <EvaluationView page={ props.product.pages[pageIndex] } pageIndex={ pageIndex } productIndex={ props.productIndex } status={ props.product.status } />
       </div>
     </ViewTransition>
   )

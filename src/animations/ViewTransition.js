@@ -11,7 +11,7 @@ const ViewTransitionProps = {
   atActive: {
     opacity: 1
   },
-  duration: 0.250
+  duration: 0.20
 }
 
 function ViewTransition(props) {

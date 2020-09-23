@@ -13,6 +13,19 @@ export default function ElementsView(props) {
     setSelectedAnswer(answer)
   }
 
+  const setButtonClass = (option) => {
+    if(props.status === 'finished') {
+      if(props.page.exercise.rightAnswer === option && props.page.exercise.rightAnswer === props.page.exercise.answer) {
+        return 'is-success'
+      } 
+      if(props.page.exercise.rightAnswer !== props.page.exercise.answer && option === props.page.exercise.answer) {
+        return 'is-danger'
+      }
+    } else {
+      return selectedAnswer === option ? 'button is-info' : 'button'
+    }
+  }
+
   return (
     <ViewTransition>
       <div className='columns is-desktop'>
@@ -24,7 +37,7 @@ export default function ElementsView(props) {
             <div className='field has-addons'>
               { props.page.exercise.options.map((option, index) => (
                 <p key={ index } className='control'>
-                  <button className={ selectedAnswer === option ? 'button is-info' : 'button' } onClick={ () => saveAnswer(option) }>
+                  <button className={ 'button ' + setButtonClass(option) } onClick={ () => saveAnswer(option) } >
                     <span>{ option }</span>
                   </button>
                 </p>

@@ -5,10 +5,11 @@ const UserContext = React.createContext()
 const { Provider, Consumer } = UserContext
 
 function UserProvider(props) {
-  const [user, setUser] = React.useState(userDummy)
+  const [user, setUser] = React.useState(null)
+  const [token, setToken] = React.useState(null)
 
   return (
-    <Provider value={{ user, setUser }}>
+    <Provider value={{ user, setUser, token, setToken }}>
       { props.children }
     </Provider>
   )
@@ -25,6 +26,63 @@ const userDummy = {
   products: [
     {
       _id: 0,
+      title: 'Guía PROS',
+      cover: 'http://localhost:8500/images/guiapros.png',
+      backgroundImage: 'http://localhost:8500/images/Matemáticas_I.jpg',
+      type: 'evaluation',
+      pages: [
+        {
+          number: 1,
+          exercise: {
+            sentence: '1. Nombre de las partes que conforman una fracción',
+            rightAnswer: 'c) Numerador y denominador',
+            answer: null,
+            options: [
+              'a) Arriba y abajo',
+              'b) Uno y dos',
+              'c) Numerador y denominador',
+              'd) Primero y segundo'
+            ]
+          }
+        },
+        {
+          number: 2,
+          exercise: {
+            sentence: '2. ¿Cuántos metros tiene un kilómetro?',
+            rightAnswer: 'd) 1000',
+            answer: null,
+            options: [
+              'a) 100',
+              'b) 454',
+              'c) 600',
+              'd) 1000'
+            ]
+          }
+        },
+        {
+          number: 3,
+          exercise: {
+            sentence: 'Es la suma de los lados de cualquier figura',
+            rightAnswer: 'b) Perímetro',
+            answer: null,
+            options: [
+              'a) Área',
+              'b) Perímetro',
+              'c) Superficie',
+              'd) Volúmen'
+            ]
+          }
+        }
+      ],
+      price: 0,
+      level: 'Primaria',//primaria, secundaria, bachillerato
+      grade: '',//
+      subject: '',//Biología etc
+      trimester: '',
+      baseColor: '#ff0000'
+    },
+    {
+      _id: 1,
       title: 'Guía PROS',
       cover: 'http://localhost:8500/images/guiapros.png',
       backgroundImage: 'http://localhost:8500/images/Matemáticas_I.jpg',
