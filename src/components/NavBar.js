@@ -5,14 +5,16 @@ import logo from '../assets/images/index.jpeg'
 import UserContext from '../context/UserContext'
 import RouterContext from '../context/RouterContext'
 import OwnedProducts from './OwnedProducts'
-import Heritage from './Heritage'
 import HeritageView from '../views/HeritageView'
+import EducationalSupportCourseView from '../views/EducationalSupportCourseView'
 
 function Navbar() {
   const { pushView } = React.useContext(RouterContext)
   const { user } = React.useContext(UserContext)
+  const [selectedItem, setSelectedItem] = React.useState('Apoyo educativo')
 
-  const handleClick = (view) => {
+  const handleClick = (view, item) => {
+    setSelectedItem(item)
     pushView(view)
   }
 
@@ -28,11 +30,8 @@ function Navbar() {
       </div>
       <div id='navbar' className='navbar-menu'>
         <div className='navbar-start'>
-          <div className='navbar-item' style={ pointer } onClick={ () => handleClick(<HeritageView />) }>
-            Acervo
-          </div>
-          <div className='navbar-item' style={ pointer } onClick={ () => handleClick(<OwnedProducts />) }>
-            Comprados
+          <div className='navbar-item' style={{ ...pointer, fontWeight: selectedItem === 'Apoyo educativo' ? 'bold' : 'normal' }} onClick={ () => handleClick(<EducationalSupportCourseView />, 'Apoyo educativo') }>
+            Apoyo educativo
           </div>
         </div>
         <div className='navbar-end'>

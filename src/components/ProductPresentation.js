@@ -50,7 +50,7 @@ function Score(props) {
   }
 
   return (
-    <div className='box blue-shadow' style={{ width: '100%', backgroundColor:'rgb(42, 92, 167)', color: 'white', boxShadow: '1 0.5em 1em -0.125em rgba(42, 92, 167, 0.5), 0 0px 0 1px rgba(42, 92, 167, 0.06) !important' }}>
+    <div className='box blue-shadow' style={{ width: '100%', backgroundColor:'rgb(42, 92, 167)', color: 'white', boxShadow: '1px 0.5em 1em -0.125em rgba(42, 92, 167, 0.5), 0 0px 0 1px rgba(42, 92, 167, 0.06) !important' }}>
       <p>{ props.product.status === 'finished' ? 'Finalizado' : 'Pendiente' }</p>
       <p>Calificación:&nbsp;{ calculateScore(props.product) }</p>
     </div>
